@@ -49,8 +49,8 @@ LOGFILE="$LOGDIR/logs.db"
 FILTERED="$LOGDIR/accepted_only.log"
 mkdir -p "$LOGDIR"
 
-BOT_TOKEN="bot123456789:ABCDEF..."   # Ganti token
-CHAT_ID="123456789"                  # Ganti chat ID
+BOT_TOKEN="bot8073139514:AAGb7E7BBMii6HYO09I8lE0qjYFbFeGgZLo"
+CHAT_ID="555095590"
 
 while true; do
   CPU_LOAD=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
